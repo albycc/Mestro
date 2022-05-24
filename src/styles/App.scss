@@ -1,0 +1,93 @@
+@import './partials/mixins.scss';
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+*{
+    margin:0;
+}
+
+ul, ol{
+    list-style-type: none;
+    padding:0;
+}
+
+html, body{
+    height:100%;
+}
+
+li{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input{
+    height:35px;
+    border-radius: 12px;
+    font-size: 1.2em;
+}
+
+label{
+    font-size: 1.2em;
+    margin-left:5px;
+}
+
+.cards-container{
+    display: flex;
+    justify-content: center;
+    margin-top:140px;
+    ul.card-list{
+        max-width: 500px;
+        width:100%;
+        li.listItem{
+            .building-card{
+                @include borderContainer(20px, 15px);
+                .row{
+                    display: flex;
+                    align-items: flex-end;
+                    & + .row{
+                        margin:25px 0px;
+                    }
+                    & > * + *{
+                        margin:0 30px;
+                    }
+                }
+                .column{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .title-container{
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}
+.cardlayout-inputs-container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height:60px;
+    width:100%;
+    top:0px;
+    box-shadow: 1px 5px 6px rgba(41, 41, 41, 30%);
+    .input-row{
+        display: flex;
+        li{
+            display: flex;
+            align-items: center;
+            margin: 0px 10px;
+            .value-label{
+                display: inline-block;
+                width:70px;
+            }
+        }
+    }
+}
+
+body{
+    background-color: orange;
+}

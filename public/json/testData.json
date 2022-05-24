@@ -48,6 +48,18 @@
     "Heating2020": 37.01759891
   },
   {
+    "Id": 24,
+    "Customer": "Storfotshönsen",
+    "Building": "Styltlöpare",
+    "BuildingType": "Kontor",
+    "Area": 6529,
+    "BuildingYear": null,
+    "Electricity2019": 17.91316458,
+    "Electricity2020": 24.09446508,
+    "Heating2019": 41.85491475,
+    "Heating2020": 31.45669683
+  },
+  {
     "Id": 25,
     "Customer": "Storfotshönsen",
     "Building": "Ringduva",

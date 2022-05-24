@@ -1,0 +1,78 @@
+*, *::before, *::after {
+  box-sizing: border-box; }
+
+* {
+  margin: 0; }
+
+ul, ol {
+  list-style-type: none;
+  padding: 0; }
+
+html, body {
+  height: 100%; }
+
+li {
+  font-family: Arial, Helvetica, sans-serif; }
+
+input {
+  height: 35px;
+  border-radius: 12px;
+  font-size: 1.2em; }
+
+label {
+  font-size: 1.2em;
+  margin-left: 5px; }
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 140px; }
+  .cards-container ul.card-list {
+    max-width: 500px;
+    width: 100%; }
+    .cards-container ul.card-list li.listItem .building-card {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      margin: 20px 0;
+      box-shadow: 5px 5px 12px rgba(41, 41, 41, 0.5);
+      padding: 15px 25px;
+      border-radius: 10px; }
+      .cards-container ul.card-list li.listItem .building-card .row {
+        display: flex;
+        align-items: flex-end; }
+        .cards-container ul.card-list li.listItem .building-card .row + .row {
+          margin: 25px 0px; }
+        .cards-container ul.card-list li.listItem .building-card .row > * + * {
+          margin: 0 30px; }
+      .cards-container ul.card-list li.listItem .building-card .column {
+        display: flex;
+        flex-direction: column; }
+      .cards-container ul.card-list li.listItem .building-card .title-container {
+        display: flex;
+        flex-direction: column; }
+
+.cardlayout-inputs-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 60px;
+  width: 100%;
+  top: 0px;
+  box-shadow: 1px 5px 6px rgba(41, 41, 41, 0.3); }
+  .cardlayout-inputs-container .input-row {
+    display: flex; }
+    .cardlayout-inputs-container .input-row li {
+      display: flex;
+      align-items: center;
+      margin: 0px 10px; }
+      .cardlayout-inputs-container .input-row li .value-label {
+        display: inline-block;
+        width: 70px; }
+
+body {
+  background-color: orange; }
+
+/*# sourceMappingURL=App.css.map */
