@@ -26,21 +26,21 @@ function CardItem(props){
       <span>{Area} m<sup>2</sup></span>
       <span>{BuildingYear || 'Okänt årtal'}</span>
     </div>
-    <div className='column'>
+    <div className='measures-column'>
       <h3 className='center'>Mätningar</h3>
       <div className='row center'>
         <div className='column'>
-          <p className='center'>El</p>
+          <p className='subheading'>El</p>
           <ul className='measures-list'>
-            <li>2019: {Electricity2019} kWh</li>
-            <li>2020: {Electricity2020} kWh</li>
+            <li><b>2019:</b> {Electricity2019} kWh</li>
+            <li><b>2020:</b> {Electricity2020} kWh</li>
           </ul>
         </div>
         <div className='column'>
-          <p className='center'>Värme</p>
+          <p className='subheading'>Värme</p>
           <ul className='measures-list'>
-            <li>2019 {Heating2019} kWh</li>
-            <li>2020 {Heating2020} kWh</li>
+            <li><b>2019:</b> {Heating2019} kWh</li>
+            <li><b>2020:</b> {Heating2020} kWh</li>
           </ul>
 
         </div>
