@@ -4,7 +4,7 @@ import './styles/App.css'
 
 let dataList = []
 
-function ListItem(props){
+function CardItem(props){
   const {Customer, 
     Building, 
     BuildingType, 
@@ -14,32 +14,42 @@ function ListItem(props){
     Heating2019, 
     Heating2020} = props.item
 
-  return <li className='listItem'>
-    <div className='building-card'>
-      <div className='row'>
-        <div className='title-container'>
-          <h2>{Building}</h2>
-          <span>{Customer}</span>
+  return <div className='building-card'>
+    <div className='row'>
+      <div className='title-container'>
+        <h2>{Building}</h2>
+        <span>{Customer}</span>
+      </div>
+    </div>
+    <div className='row'>
+      <span>{BuildingType}</span>
+      <span>{Area} m<sup>2</sup></span>
+      <span>{BuildingYear || 'Okänt årtal'}</span>
+    </div>
+    <div className='column'>
+      <h3 className='center'>Mätningar</h3>
+      <div className='row center'>
+        <div className='column'>
+          <p className='center'>El</p>
+          <ul className='measures-list'>
+            <li>2019: {Electricity2019} kWh</li>
+            <li>2020: {Electricity2020} kWh</li>
+          </ul>
         </div>
-      </div>
-      <div className='row'>
-        <span>{BuildingType}</span>
-        <span>{Area} m<sup>2</sup></span>
-        <span>{BuildingYear || 'Okänt årtal'}</span>
-      </div>
-      <div className='column'>
-        <h3>Mätningar</h3>
-        <ul>
-          <li>Elen 2019: {Electricity2019} kWh</li>
-          <li>Elen 2020: {Electricity2020} kWh</li>
-          <li>Värme 2019 {Heating2019} kWh</li>
-          <li>Värme 2020 {Heating2020} kWh</li>
-        </ul>
-      </div>
+        <div className='column'>
+          <p className='center'>Värme</p>
+          <ul className='measures-list'>
+            <li>2019 {Heating2019} kWh</li>
+            <li>2020 {Heating2020} kWh</li>
+          </ul>
 
+        </div>
+
+      </div>
     </div>
 
-  </li>
+  </div>
+
 }
 
 function CardLayoutInputs(props){
@@ -49,17 +59,14 @@ function CardLayoutInputs(props){
   const radioHouse = React.createRef();
   const areaRange = React.createRef();
   const [rangeValue, setRangeValue] = useState(0)
-
-  // if(props.list){
-  //   console.log(props.list)
-  //   const maxValue = Math.max(...props.list.map(item => item.Area))
-  //   areaRange.current.max = maxValue
-
-  // }
     
   useEffect(() =>{
-    const maxValue = Math.max(...dataList.map(item => item.Area))
-    areaRange.current.max = maxValue
+    if(props.list.length > 0){
+      const maxValue = Math.max(...dataList.map(item => item.Area))
+      areaRange.current.max = maxValue
+      areaRange.current.defaultValue = maxValue
+      setRangeValue(areaRange.current.value)
+    }
   })
 
   const searchInputs = ()=>{
@@ -70,13 +77,10 @@ function CardLayoutInputs(props){
     const radioValue = radioInput ? radioInput.value : ''
 
     setRangeValue(areaRange.current.value)
-    areaRange.current.value = rangeValue
-    console.log(rangeValue)
-
 
     props.setData(dataList.filter(item => item.Building.toLowerCase().includes(searchText) &&
      item.BuildingType.includes(radioValue) && 
-     item.Area < areaRange.current.value     
+     item.Area <= rangeValue     
      ))
   }
 
@@ -133,9 +137,22 @@ function CardLayoutInputs(props){
   </div>
 }
 
-function CardLayout(){
-  const [data, setData] = useState([]);
+function CardLayout(props){
 
+  return <div className='cards-layout'>
+      <div className='card-container'>
+        {props.list &&  props.list.length > 0 ? 
+          <div className='cards-list'>
+            {props.list.map((item) => <CardItem key={item.Id.toString()} item={item} />)}
+          </div> :
+          <div className="search-result-message"><h1>Inga resultat</h1></div>
+          }
+        </div>
+      </div>
+}
+
+function CardContainer(){
+  const [data, setData] = useState([]);
 
   useEffect(()=>{
     (async ()=>{
@@ -143,14 +160,12 @@ function CardLayout(){
       setData(dataList)
     })();
   }, [])
+
+
   return <div>
-      <CardLayoutInputs list={data} setData={setData}/>
-    <div className='cards-container'>
-      <ul className='card-list'>
-        {data &&  data.length > 0 && data.map((item) => <ListItem key={item.Id.toString()} item={item} />)}
-      </ul>
-    </div>
-  </div> 
+    <CardLayoutInputs list={data} setData={setData}/>
+    <CardLayout list={data} setData={setData} />
+  </div>
 }
 
 async function fetchData(list){
@@ -165,7 +180,8 @@ async function fetchData(list){
   return data
 }
 
+
 const app = ReactDOM.createRoot(document.getElementById('app-container'));
 
-app.render(<CardLayout />);
+app.render(<CardContainer />);
 

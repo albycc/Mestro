@@ -6,6 +6,7 @@
 
 *{
     margin:0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 ul, ol{
@@ -15,10 +16,6 @@ ul, ol{
 
 html, body{
     height:100%;
-}
-
-li{
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 input{
@@ -32,14 +29,20 @@ label{
     margin-left:5px;
 }
 
-.cards-container{
+.cards-layout{
     display: flex;
     justify-content: center;
     margin-top:140px;
-    ul.card-list{
-        max-width: 500px;
-        width:100%;
-        li.listItem{
+    .card-container{
+        display: flex;
+        justify-content: center;
+        .cards-list{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            width: 1100px;
+
             .building-card{
                 @include borderContainer(20px, 15px);
                 .row{
@@ -55,13 +58,32 @@ label{
                 .column{
                     display: flex;
                     flex-direction: column;
+                    .center{
+                        display: flex;
+                        justify-content: center;
+                    }
                 }
                 .title-container{
                     display: flex;
                     flex-direction: column;
                 }
+
+                .measures-list{
+                    li{
+                        padding:5px 0px;
+                    }
+                }
             }
         }
+        .search-result-message{
+            display: flex;
+            justify-content: center;
+            h1{
+                color:rgb(104, 49, 13)
+
+            }
+        }
+
     }
 }
 .cardlayout-inputs-container{
@@ -83,6 +105,7 @@ label{
             .value-label{
                 display: inline-block;
                 width:70px;
+                margin-left:10px;
             }
         }
     }

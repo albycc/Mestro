@@ -2,8 +2,10 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    margin: $margin 0;
+    margin: $margin 15px;
     box-shadow: 5px 5px 12px rgba(41, 41, 41, 50%);
     padding: $padding 25px;
     border-radius: 10px;
+    max-width:500px;
+    width:100%;
 }
